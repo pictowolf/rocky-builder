@@ -1,0 +1,5 @@
+version     = "0.1.0"
+root_pass   = "password"
+cpus        = "4"
+memory      = "4096"
+hostname    =  "testing.local"
