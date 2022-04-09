@@ -39,6 +39,7 @@ source "hyperv-iso" "hypver-v" {
   memory       = "${var.memory}"
   ssh_username = "root"
   ssh_password = "${var.root_pass}"
+
   http_content = {
     "/ks.cfg" = templatefile("scripts/ks.pkrtpl", { hostname = "${var.hostname}", root_password = "${var.root_pass}" })
   }
@@ -60,6 +61,7 @@ build {
 
   provisioner "ansible-local" {
     playbook_file   = "packer/ansible/playbook.yml"
+    galaxy_file     = "packer/ansible/requirements.yml"
   }
 
   provisioner "shell" {
