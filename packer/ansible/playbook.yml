@@ -1,0 +1,18 @@
+---
+- name: Provision basics
+  hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+  - name: Update the OS
+    dnf:
+      name: "*"
+      state: latest
+      
+  - name: Install basic software
+    dnf:
+      name:
+        - wget
+        - vim
+        - git
+      state: latest

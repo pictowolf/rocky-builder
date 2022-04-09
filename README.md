@@ -7,8 +7,7 @@ This is an automated way to build a Rocky Linux image to allow for a continually
 
 ## todo
 * add vmware-iso source
-* add shell to setup ansible as needed
-* add ansible role to update the vm
+* move ansible install out of post kickstart?
 
 ## How to use
 * Change dev.pkvars.hcl.example to dev.pkvars.hcl and ammend the values as needed. Use this to control different environments, EG: staging, prod etc.

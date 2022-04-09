@@ -68,4 +68,7 @@ systemctl enable hypervvssd
 systemctl enable hypervkvpd
 systemctl start hypervvssd
 systemctl start hypervkvpd
+# Install ansible
+dnf install -y epel-release
+dnf install -y ansible
 %end

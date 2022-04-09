@@ -58,6 +58,10 @@ source "hyperv-iso" "hypver-v" {
 build {
   sources = ["source.hyperv-iso.hypver-v"]
 
+  provisioner "ansible-local" {
+    playbook_file   = "packer/ansible/playbook.yml"
+  }
+
   provisioner "shell" {
     execute_command   = "bash '{{ .Path }}'"
     expect_disconnect = true
