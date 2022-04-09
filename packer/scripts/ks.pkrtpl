@@ -1,0 +1,71 @@
+# Use text install
+text
+# Don't run the Setup Agent on first boot
+firstboot --disabled
+eula --agreed
+ignoredisk --only-use=sda
+# Keyboard layouts
+keyboard --vckeymap=uk --xlayouts='gb'
+# System language
+lang en_GB.UTF-8
+# Network information
+network --bootproto=dhcp --onboot=on --activate --hostname=${hostname}
+# Root password
+rootpw ${root_password}
+# System services
+selinux --enforcing
+firewall --enabled
+services --enabled="NetworkManager,sshd,chronyd"
+# System timezone
+timezone Europe/London --isUtc
+
+# System bootloader configuration
+bootloader --location=mbr --append="crashkernel=auto"
+# Clear the Master Boot Record
+zerombr
+# Remove partitions
+clearpart --all --initlabel
+# Automatically create partitions using LVM
+autopart --type=lvm
+
+# Skip Windows X
+skipx
+reboot
+
+# Package management
+%packages --ignoremissing --excludedocs
+@^minimal-environment
+# unnecessary firmware
+-aic94xx-firmware
+-atmel-firmware
+-b43-openfwwf
+-bfa-firmware
+-ipw2100-firmware
+-ipw2200-firmware
+-ivtv-firmware
+-iwl*-firmware
+-libertas-usb8388-firmware
+-ql*-firmware
+-rt61pci-firmware
+-rt73usb-firmware
+-xorg-x11-drv-ati-firmware
+-zd1211-firmware
+-cockpit
+-quota
+-alsa-*
+-fprintd-pam
+-intltool
+-microcode_ctl
+%end
+
+%addon com_redhat_kdump --disable
+%end
+
+%post
+# Hyper-v tools, not in the minimal install so must be done in post
+dnf install -y hyperv-daemons
+systemctl enable hypervvssd
+systemctl enable hypervkvpd
+systemctl start hypervvssd
+systemctl start hypervkvpd
+%end
