@@ -23,6 +23,16 @@ variable "memory" {
   default = 2048
 }
 
+variable "iso" {
+  type    = string
+  default = "https://download.rockylinux.org/pub/rocky/8/isos/x86_64/Rocky-8.5-x86_64-minimal.iso"
+}
+
+variable "iso_checksum" {
+  type    = string
+  default = "4eb2ae6b06876205f2209e4504110fe4115b37540c21ecfbbc0ebc11084cb779"
+}
+
 source "hyperv-iso" "hypver-v" {
   vm_name      = "rockylinux8-${var.version}"
   cpus         = "${var.cpus}"
@@ -41,8 +51,8 @@ source "hyperv-iso" "hypver-v" {
 
   headless         = true
   shutdown_command = "/sbin/halt -h -p"
-  iso_url          = "https://download.rockylinux.org/pub/rocky/8/isos/x86_64/Rocky-8.5-x86_64-minimal.iso"
-  iso_checksum     = "4eb2ae6b06876205f2209e4504110fe4115b37540c21ecfbbc0ebc11084cb779"
+  iso_url          = "${var.iso}"
+  iso_checksum     = "${var.iso_checksum}"
 }
 
 build {
