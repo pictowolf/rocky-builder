@@ -41,7 +41,8 @@ source "hyperv-iso" "hypver-v" {
   ssh_password = "${var.root_pass}"
 
   http_content = {
-    "/ks.cfg" = templatefile("scripts/ks.pkrtpl", { hostname = "${var.hostname}", root_password = "${var.root_pass}" })
+    "/ks.cfg" = templatefile("scripts/ks.pkrtpl",
+    { hostname = "${var.hostname}", root_password = "${var.root_pass}" })
   }
 
   boot_command = [
@@ -60,8 +61,8 @@ build {
   sources = ["source.hyperv-iso.hypver-v"]
 
   provisioner "ansible-local" {
-    playbook_file   = "packer/ansible/playbook.yml"
-    galaxy_file     = "packer/ansible/requirements.yml"
+    playbook_file = "packer/ansible/playbook.yml"
+    galaxy_file   = "packer/ansible/requirements.yml"
   }
 
   provisioner "shell" {
