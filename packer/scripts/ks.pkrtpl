@@ -68,6 +68,7 @@ systemctl enable hypervvssd
 systemctl enable hypervkvpd
 systemctl start hypervvssd
 systemctl start hypervkvpd
-# Install ansible
+# Install ansible with git for galaxy roles
 dnf install -y epel-release
+dnf install -y ansible git
 %end

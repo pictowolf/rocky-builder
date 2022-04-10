@@ -1,2 +1,3 @@
----    
-- src: https://github.com/pictowolf/ansible-role-elasticsearch.git
+# Uncomment and replace, this is just an example.
+# ---    
+# - src: https://github.com/pictowolf/ansible-role-elasticsearch.git

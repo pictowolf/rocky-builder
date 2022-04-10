@@ -12,10 +12,11 @@
       name:
         - wget
         - vim
-        - git
       state: latest
-  roles:
-  - role: ansible-role-elasticsearch
-    vars:
-      es_xpack_enabled: false
-      es_tls_enabled: false
+  # This is an example of how you can add roles into the playbook.
+  # roles:
+  # - role: ansible-role-elasticsearch
+  #   vars:
+  #     es_xpack_enabled: false
+  #     es_tls_enabled: false
+  #     es_node_fqdn: "{{ ansible_eth0.ipv4.address }}"
